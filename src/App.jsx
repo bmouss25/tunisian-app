@@ -1447,9 +1447,9 @@ function WordImage({ french, size = 60 }) {
   useEffect(() => {
     if (svgCache[french]) { setSvg(svgCache[french]); return; }
     setLoading(true);
-    fetch("https://api.anthropic.com/v1/messages", {
+    fetch("/api/claude", {
       method: "POST",
-      headers: { "Content-Type": "application/json", "x-api-key": "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", "anthropic-version": "2023-06-01" },
+      headers: { "Content-Type": "application/json" },
       body: JSON.stringify({
         model: "claude-sonnet-4-20250514",
         max_tokens: 600,
@@ -2279,13 +2279,10 @@ Réponds UNIQUEMENT avec un objet JSON valide, sans aucun texte avant ou après,
 
 Si le mot n'existe pas directement en tunisien, utilise l'équivalent le plus naturel dans la langue parlée.`;
 
-    fetch("https://api.anthropic.com/v1/messages", {
+    fetch("/api/claude", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
-        "x-api-key": "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",
-        "anthropic-version": "2023-06-01",
-        "anthropic-dangerous-direct-browser-access": "true"
       },
       body: JSON.stringify({
         model: "claude-haiku-4-5-20251001",
